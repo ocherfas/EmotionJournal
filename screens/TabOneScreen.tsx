@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import {  View } from '../components/Themed';
+import { View } from '../components/Themed';
 import Emotion from '../components/Emotion';
 import { RootTabScreenProps } from '../types';
+import { FAB } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler';
 import moment from 'moment'
 
@@ -13,7 +14,9 @@ const seperatorItem = ({}) => {
 }
 
 const DATA = [
-  {emotion: "emotion text", event: "some event", moment: moment()}
+  {emotion: "emotion text", event: "some event", moment: moment()},
+  {emotion: "emotion text", event: "some event", moment: moment().subtract(3, 'days')},
+  {emotion: "emotion text", event: "some event", moment: moment().subtract(1, 'months')}
 ]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
@@ -22,11 +25,22 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       <FlatList contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
         <Emotion {...item}/>
       )} ItemSeparatorComponent={seperatorItem}/>
+      <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  buttonTitle: {
+    fontSize: 25
+  },
+  create: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 60,
+    height: 60,
+    borderRadius: 30
+  },
   list:{
     paddingHorizontal: 30
   },
