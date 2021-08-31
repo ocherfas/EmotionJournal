@@ -12,7 +12,7 @@ const seperatorItem = ({}) => {
 }
 
 const DATA = [
-  {emotion: "emotion text",date: Date(), event: "some event"}, {}, {}, {}, {}, {}, {}, {}
+  {emotion: "emotion text", event: "some event"}, {}, {}, {}, {}, {}, {}, {}
 ]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
@@ -27,10 +27,10 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 
 const styles = StyleSheet.create({
   list:{
-    
     paddingHorizontal: 30
   },
   container: {
+    flexDirection: "row",
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
