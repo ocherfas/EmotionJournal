@@ -25,7 +25,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       <FlatList contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
         <Emotion {...item}/>
       )} ItemSeparatorComponent={seperatorItem}/>
-      <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}/>
+      <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
+        onPress={() => navigation.navigate('Modal')}/>
     </View>
   );
 }
