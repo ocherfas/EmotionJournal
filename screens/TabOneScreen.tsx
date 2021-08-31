@@ -1,21 +1,35 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import {  View } from '../components/Themed';
+import Emotion from '../components/Emotion';
 import { RootTabScreenProps } from '../types';
+import { FlatList } from 'react-native-gesture-handler';
+
+const seperatorItem = ({}) => {
+  return (
+    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+  )
+}
+
+const DATA = [
+  {emotion: "emotion text",date: Date(), event: "some event"}, {}, {}, {}, {}, {}, {}, {}
+]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <FlatList contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
+        <Emotion {...item}/>
+      )} ItemSeparatorComponent={seperatorItem}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  list:{
+    
+    paddingHorizontal: 30
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -26,7 +40,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
     height: 1,
     width: '80%',
   },
