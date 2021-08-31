@@ -4,6 +4,7 @@ import {  View } from '../components/Themed';
 import Emotion from '../components/Emotion';
 import { RootTabScreenProps } from '../types';
 import { FlatList } from 'react-native-gesture-handler';
+import moment from 'moment'
 
 const seperatorItem = ({}) => {
   return (
@@ -12,7 +13,7 @@ const seperatorItem = ({}) => {
 }
 
 const DATA = [
-  {emotion: "emotion text", event: "some event"}, {}, {}, {}, {}, {}, {}, {}
+  {emotion: "emotion text", event: "some event", moment: moment()}
 ]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   title: {
