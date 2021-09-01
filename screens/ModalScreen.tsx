@@ -5,7 +5,6 @@ import { Platform, StyleSheet } from 'react-native';
 import { Text, View} from '../components/Themed';
 import {TextInput, Button} from 'react-native'
 import emotionEntries from '../data/emotion-entries'
-import moment from 'moment';
 import { RootTabScreenProps } from '../types';
 
 export default function NewEntry({navigation}: RootTabScreenProps<'TabOne'>){
@@ -15,7 +14,7 @@ export default function NewEntry({navigation}: RootTabScreenProps<'TabOne'>){
     await emotionEntries.addEntry({
       event: state.event, 
       emotion: state.emotion, 
-      moment: moment()
+      date: Date()
     })
 
     navigation.navigate('TabOne');
