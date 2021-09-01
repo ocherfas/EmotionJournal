@@ -18,7 +18,6 @@ export default function Emotion({moment, event, emotion}: {moment: Moment, event
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    marginVertical: 30,
 },
 date: {
     fontSize: 30,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
+import { View, Text } from '../components/Themed';
 import Emotion from '../components/Emotion';
 import { RootTabScreenProps } from '../types';
 import { FAB } from 'react-native-elements'
@@ -14,15 +14,12 @@ const seperatorItem = ({}) => {
 }
 
 const DATA = [
-  {emotion: "emotion text", event: "some event", moment: moment()},
-  {emotion: "emotion text", event: "some event", moment: moment().subtract(3, 'days')},
-  {emotion: "emotion text", event: "some event", moment: moment().subtract(1, 'months')}
 ]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <View style={styles.container}>
-      <FlatList contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
+      <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
         <Emotion {...item}/>
       )} ItemSeparatorComponent={seperatorItem}/>
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
@@ -31,7 +28,11 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
   );
 }
 
+const margin = 30;
 const styles = StyleSheet.create({
+  emptyText: {
+    fontSize: 25
+  },
   buttonTitle: {
     fontSize: 25
   },
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 30
   },
   list:{
-    paddingHorizontal: 30
+    padding: margin
   },
   container: {
     flexDirection: "row",
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
+    marginVertical: margin,
     height: 1,
     width: '80%',
   },
