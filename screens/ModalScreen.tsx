@@ -5,19 +5,20 @@ import { Platform, StyleSheet } from 'react-native';
 import { Text, View} from '../components/Themed';
 import {TextInput, Button} from 'react-native'
 import emotionEntries from '../data/emotion-entries'
-import { RootTabScreenProps } from '../types';
+import { RootStackParamList } from '../types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export default function NewEntry({navigation}: RootTabScreenProps<'TabOne'>){
+export default function NewEntry({navigation}: NativeStackScreenProps<RootStackParamList, 'Journal'>){
   const [state, setState] = React.useState<{emotion: string, event: string}>({emotion: "", event: ""});
 
   const submit = async () => {
     await emotionEntries.addEntry({
       event: state.event, 
       emotion: state.emotion, 
-      date: Date()
+      date: new Date()
     })
 
-    navigation.navigate('TabOne');
+    navigation.navigate('Journal');
   }
 
   return (

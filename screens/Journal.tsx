@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text } from '../components/Themed';
 import Emotion from '../components/Emotion';
-import { RootTabScreenProps } from '../types';
 import { FAB } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
 import emotionEntries, { EmotionEntry } from '../data/emotion-entries';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
 
 const seperatorItem = ({}) => {
   return (
@@ -14,7 +15,7 @@ const seperatorItem = ({}) => {
   )
 }
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function Journal({ navigation }: NativeStackScreenProps<RootStackParamList, 'Journal'>) {
   const [data, setState] = React.useState<EmotionEntry[]>([]);
 
   useFocusEffect(React.useCallback(() => {
@@ -29,7 +30,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
         <Emotion {...item}/>
       )} ItemSeparatorComponent={seperatorItem}/>
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
-        onPress={() => navigation.navigate('Modal')}/>
+        onPress={() => navigation.navigate('NewEntry')}/>
     </View>
   );
 }
