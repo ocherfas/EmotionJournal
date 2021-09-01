@@ -5,7 +5,8 @@ import Emotion from '../components/Emotion';
 import { RootTabScreenProps } from '../types';
 import { FAB } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler';
-import moment from 'moment'
+import { useFocusEffect } from '@react-navigation/native';
+import emotionEntries, { EmotionEntry } from '../data/emotion-entries';
 
 const seperatorItem = ({}) => {
   return (
@@ -13,13 +14,18 @@ const seperatorItem = ({}) => {
   )
 }
 
-const DATA = [
-]
-
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+  const [data, setState] = React.useState<EmotionEntry[]>([]);
+
+  useFocusEffect(React.useCallback(() => {
+    emotionEntries.getEntries().then((entries) => {
+      setState(entries)
+    })
+  }, []))
+
   return (
     <View style={styles.container}>
-      <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} contentContainerStyle={styles.list} data={DATA} renderItem={({item}) => (
+      <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} contentContainerStyle={styles.list} data={data} renderItem={({item}) => (
         <Emotion {...item}/>
       )} ItemSeparatorComponent={seperatorItem}/>
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
