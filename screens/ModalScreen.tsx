@@ -57,6 +57,7 @@ export default function NewEntry({navigation}: NativeStackScreenProps<RootStackP
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: "#fff",
     flex: 1,
     width: "100%"
   },
