@@ -8,7 +8,7 @@ export interface EmotionEntry {
     date: Date
 }
 
-const entriesKey = process.env.__DEV__ ? "@entries-dev" : "entries"
+const entriesKey = __DEV__ ? "@entries-dev" : "@entries"
 class EmotionEntries {
 
     async getEntries(): Promise<EmotionEntry[]>{
