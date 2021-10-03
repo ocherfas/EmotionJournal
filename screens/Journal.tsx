@@ -9,12 +9,6 @@ import emotionEntries, { EmotionEntry } from '../data/emotion-entries';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 
-const seperatorItem = ({}) => {
-  return (
-    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-  )
-}
-
 export default function Journal({ navigation }: NativeStackScreenProps<RootStackParamList, 'Journal'>) {
   const [data, setState] = React.useState<EmotionEntry[]>([]);
 
@@ -25,10 +19,10 @@ export default function Journal({ navigation }: NativeStackScreenProps<RootStack
   }, []))
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container}> 
       <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} data={data} renderItem={({item}) => (
         <Emotion {...item} />
-      )} ItemSeparatorComponent={seperatorItem} ListFooterComponent={seperatorItem}/>
+      )} />
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
         onPress={() => navigation.navigate('NewEntry')}/>
     </View>
@@ -58,9 +52,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    height: 1,
-    width: '100%',
-  },
+  }
 });

@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Icon, ListItem } from 'react-native-elements';
 
 export default function Emotion({date, event, emotion}: {date: Date, event: string, emotion: string}) {
     const navigation = useNavigation();
+
     const dateString = date.toLocaleString()
     return (
-    <Pressable onPress={() => {
-        navigation.navigate('EmotionEntry', {emotion, event, dateString})
-    }}>
-        <View style={styles.container}>
-            <Text style={styles.date}>{dateString}</Text>
-        </View>
-    </Pressable>
+    <ListItem bottomDivider onPress={() => navigation.navigate('EmotionEntry', {emotion, event, dateString})}>
+        <ListItem.Content>
+            <ListItem.Title>{dateString}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron></ListItem.Chevron>
+    </ListItem>
     );
 }
 
