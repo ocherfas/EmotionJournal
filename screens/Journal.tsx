@@ -28,7 +28,7 @@ export default function Journal({ navigation }: NativeStackScreenProps<RootStack
     <View style={styles.container}>
       <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} data={data} renderItem={({item}) => (
         <Emotion {...item} />
-      )} ItemSeparatorComponent={seperatorItem}/>
+      )} ItemSeparatorComponent={seperatorItem} ListFooterComponent={seperatorItem}/>
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
         onPress={() => navigation.navigate('NewEntry')}/>
     </View>
