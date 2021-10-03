@@ -17,4 +17,9 @@ export type RootStackParamList = {
   Journal: undefined;
   NewEntry: undefined;
   NotFound: undefined;
+  EmotionEntry: {
+    dateString: string, 
+    event: string, 
+    emotion: string
+  };
 };

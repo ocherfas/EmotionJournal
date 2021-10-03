@@ -1,35 +1,29 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Emotion({date, event, emotion}: {date: Date, event: string, emotion: string}) {
+    const navigation = useNavigation();
+    const dateString = date.toLocaleString()
     return (
-      <View style={styles.container}>
-        <Text style={styles.date}>{date.toLocaleString()}</Text>
-        <Text style={styles.title}>Event:</Text>
-        <Text style={styles.text}>{event}</Text>
-        <Text style={styles.title}>Emotion:</Text>
-        <Text style={styles.text}>{emotion}</Text>
-      </View>
+    <Pressable onPress={() => {
+        navigation.navigate('EmotionEntry', {emotion, event, dateString})
+    }}>
+        <View style={styles.container}>
+            <Text style={styles.date}>{dateString}</Text>
+        </View>
+    </Pressable>
     );
 }
 
 const styles = StyleSheet.create({
 container: {
     flex: 1,
+    padding: 30
 },
 date: {
-    fontSize: 30,
-    marginBottom: 20,
-    fontWeight: 'bold',
-},
-title: {
     fontSize: 20,
     fontWeight: 'bold',
-},
-text: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontWeight: 'normal',
-},
+}
 });

@@ -8,6 +8,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import NewEntry from './screens/ModalScreen';
 import Journal from './screens/Journal';
+import EmotionEntry from './screens/EmotionEntry';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -23,6 +24,7 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name="Journal" component={Journal}></Stack.Screen>
             <Stack.Screen name="NewEntry" component={NewEntry} options={{title: "New Entry"}}/>
+            <Stack.Screen name="EmotionEntry" component={EmotionEntry} options={({route}) => ({title: (route.params as any).dateString })}/>
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar />

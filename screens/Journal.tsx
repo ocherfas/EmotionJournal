@@ -26,8 +26,8 @@ export default function Journal({ navigation }: NativeStackScreenProps<RootStack
 
   return (
     <View style={styles.container}>
-      <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} contentContainerStyle={styles.list} data={data} renderItem={({item}) => (
-        <Emotion {...item}/>
+      <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} data={data} renderItem={({item}) => (
+        <Emotion {...item} />
       )} ItemSeparatorComponent={seperatorItem}/>
       <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
         onPress={() => navigation.navigate('NewEntry')}/>
@@ -35,7 +35,6 @@ export default function Journal({ navigation }: NativeStackScreenProps<RootStack
   );
 }
 
-const margin = 30;
 const styles = StyleSheet.create({
   emptyText: {
     fontSize: 25
@@ -50,9 +49,6 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30
   },
-  list:{
-    padding: margin
-  },
   container: {
     flexDirection: "row",
     flex: 1,
@@ -64,8 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: margin,
     height: 1,
-    width: '80%',
+    width: '100%',
   },
 });
