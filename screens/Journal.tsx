@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text } from '../components/Themed';
 import Emotion from '../components/Emotion';
-import { FAB } from 'react-native-elements'
+import { FAB, Icon } from 'react-native-elements'
 import { FlatList } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
 import emotionEntries, { EmotionEntry } from '../data/emotion-entries';
@@ -23,7 +23,7 @@ export default function Journal({ navigation }: NativeStackScreenProps<RootStack
       <FlatList ListEmptyComponent={() => (<Text style={styles.emptyText}>No emotion entries yet.</Text>)} data={data} renderItem={({item}) => (
         <Emotion {...item} />
       )} />
-      <FAB title="+" placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
+      <FAB icon={<Icon color="white" type="material" name="add"/>} placement="right" titleStyle={styles.buttonTitle} buttonStyle={styles.create}
         onPress={() => navigation.navigate('NewEntry')}/>
     </View>
   );
