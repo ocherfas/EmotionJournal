@@ -6,6 +6,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { EmotionEntry, PlainEmotion } from './data/emotion-entries';
 
 declare global {
   namespace ReactNavigation {
@@ -18,8 +19,12 @@ export type RootStackParamList = {
   NewEntry: undefined;
   NotFound: undefined;
   EmotionEntry: {
-    dateString: string, 
+    date: string, 
     event: string, 
     emotion: string
   };
+  JournalSelection: {
+    entries: PlainEmotion[],
+    selected: number
+  }
 };

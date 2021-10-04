@@ -8,6 +8,20 @@ export interface EmotionEntry {
     date: Date
 }
 
+export interface PlainEmotion {
+    key: number,
+    emotion: string,
+    event: string,
+    date: string
+}
+
+export function getPlainEmotion(emotion: EmotionEntry) {
+    return {
+        ...emotion,
+        date: emotion.date.toLocaleString()
+    }
+}
+
 const entriesKey = __DEV__ ? "@entries-dev" : "@entries"
 class EmotionEntries {
 
